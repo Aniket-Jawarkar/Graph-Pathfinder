@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+    <title>Graph Pathfinder | Dijkstra's Algorithm</title>
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <header>
+      <div class="title">
+        <a href="index.html">Graph Pathfinder</a>
+        <a href="./instructions.html" title="Instructions">
+          <img
+            src="https://cdn4.iconfinder.com/data/icons/web-mobile1/100/Untitled-8-512.png"
+            alt="Instructions"
+          />
+        </a>
+      </div>
+      <div class="options">
+        <div>
+          <button class="outline-btn" id="add-edge-enable" onclick="addEdges()">
+            <!-- keep the icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            <span class="btn-label">Add Edges</span>
+          </button>
+          <button
+            class="outline-btn reset-btn"
+            onclick="resetDrawingArea()"
+            disabled
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3zM15 9l-6 6m0-6l6 6"/></svg>
+            Clear
+          </button>
+        </div>
+        <div>
+          <input
+            type="text"
+            inputmode="numeric"
+            id="source-node"
+            placeholder="Source Node"
+          />
+          <button
+            class="outline-btn run-btn"
+            onclick="findShortestPath(this)"
+            disabled
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            Find Path
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="drawing-area">
+      <p class="click-instruction">Click anywhere to create a node</p>
+    </div>
+    <div class="path"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.1/gsap.min.js"></script>
+
+    <!-- core logic first -->
+    <script src="./main.js"></script>
+    <!-- animations timeline -->
+    <script src="./index.js"></script>
+
+    <script>
+      // Initialize particle.js (unchanged visuals)
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: {
+            value: 0.2,
+            random: true,
+            animation: { enable: true, speed: 1, minimumValue: 0.1, sync: false }
+          },
+          size: {
+            value: 3,
+            random: true,
+            animation: { enable: true, speed: 2, minimumValue: 0.1, sync: false }
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.1,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 1,
+            direction: "none",
+            random: true,
+            straight: false,
+            outModes: { default: "out" },
+            attract: { enable: false, rotateX: 600, rotateY: 1200 }
+          }
+        },
+        interactivity: {
+          detectsOn: "canvas",
+          events: {
+            onHover: { enable: true, mode: "grab" },
+            onClick: { enable: false },
+            resize: true
+          },
+          modes: {
+            grab: { distance: 140, lineLinked: { opacity: 0.5 } }
+          }
+        },
+        retina_detect: true
+      });
+    </script>
+  </body>
+</html>

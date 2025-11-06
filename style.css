@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #1a1f3c 0%, #2a1f6f 100%);
+  min-height: 100vh;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Header Styles */
+header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.title a {
+  font-size: 2.5rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.title a:hover {
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.title a:nth-child(2) {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 40px;
+  height: 40px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.title a:nth-child(2):hover {
+  opacity: 1;
+}
+
+/* Options Panel */
+.options {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.options > div {
+  display: flex;
+  gap: 1rem;
+}
+
+.outline-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1.5rem;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.outline-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.outline-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#source-node {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1.5rem;
+  color: #fff;
+  border-radius: 8px;
+  outline: none;
+  width: 120px;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+#source-node::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Drawing Area */
+.drawing-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
+
+.click-instruction {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  text-align: center;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.4; }
+}
+
+/* Nodes */
+.block {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.block:hover {
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Edges */
+.line {
+  height: 3px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.5));
+  position: absolute;
+  transform-origin: top left;
+  z-index: 5;
+}
+
+.line .edge-weight {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* Path Display */
+.path {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  max-width: 400px;
+  width: 90%;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Particle Effect */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .title a {
+    font-size: 2rem;
+  }
+  
+  .options {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .path {
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
