@@ -3,7 +3,6 @@ Graph Pathfinder : Dijkstra’s Algorithm (Interactive Visualizer)
 Interactive shortest-path visualizer implementing Dijkstra’s Algorithm on a user-built graph.
 Place nodes, add weighted edges, edit costs, and watch the algorithm relax edges and reconstruct paths in real time.
 
-Built for people who actually care about DSA correctness, not just pretty UI.
 
 🔎 What this project demonstrates
 
